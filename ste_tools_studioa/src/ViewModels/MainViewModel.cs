@@ -640,17 +640,17 @@ namespace ste_tool_studio.ViewModels
                 PreparedBy = PreparedBy?.Trim() ?? string.Empty;
                 Footer = Footer?.Trim() ?? string.Empty;
 
-                _config.UpdateTemplateNormalizerConfig("protocol", StdName, DocNumber, ProjectNumber, TestPlan, PreparedBy, Footer, SelectedFilePath);
+                _config.UpdateTemplateNormalizerConfig("protocol", StdName, DocNumber, string.Empty, TestPlan, string.Empty, PreparedBy, SelectedFilePath);
 
 
                 var result = await _validationService.RunSTDNormalizationAsync(
                     SelectedFilePath,
                     StdName,
                     DocNumber,
-                    ProjectNumber,
+                    string.Empty,
                     TestPlan,
+                    string.Empty,
                     PreparedBy,
-                    Footer,
                     false, // Default to Protocol mode for MainViewModel (backward compatibility)
                     OnProgressUpdate);
 
