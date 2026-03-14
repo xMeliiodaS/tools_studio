@@ -210,6 +210,10 @@ def _get_placeholder_replacements() -> Dict[str, str]:
     """Get all placeholder replacements from config including doc_type overrides."""
     config = ConfigProvider.load_config_json()
 
+    stx_number = config.get(
+        ConfigKeys.STX_NUMBER, config.get(ConfigKeys.LEGACY_KEYS["STX_NUMBER"], "")
+    )
+
     replacements = {
         WordPlaceholders.DOC_TYPE: config.get(
             ConfigKeys.DOC_TYPE, config.get(ConfigKeys.LEGACY_KEYS["DOC_TYPE"], "")
@@ -223,20 +227,21 @@ def _get_placeholder_replacements() -> Dict[str, str]:
         WordPlaceholders.DOC_STD: config.get(
             ConfigKeys.DOC_STD, config.get(ConfigKeys.LEGACY_KEYS["DOC_STD"], "")
         ),
+        WordPlaceholders.REPORT_NUMBER: config.get(
+            ConfigKeys.REPORT_NUMBER, config.get(ConfigKeys.LEGACY_KEYS["REPORT_NUMBER"], "")
+        ),
         WordPlaceholders.STD_NAME: config.get(
             ConfigKeys.STD_NAME, config.get(ConfigKeys.LEGACY_KEYS["STD_NAME"], "")
         ),
         WordPlaceholders.PLAN_NUMBER: config.get(
             ConfigKeys.TEST_PLAN, config.get(ConfigKeys.LEGACY_KEYS["PLAN_NUMBER"], "")
         ),
+        WordPlaceholders.STX_NUMBER: stx_number,
         WordPlaceholders.PREPARED_BY: config.get(
             ConfigKeys.PREPARED_BY, config.get(ConfigKeys.LEGACY_KEYS["PREPARED_BY"], "")
         ),
         WordPlaceholders.TEST_PROTOCOL: config.get(
             ConfigKeys.TEST_PROTOCOL, config.get(ConfigKeys.LEGACY_KEYS["TEST_PROTOCOL"], "")
-        ),
-        WordPlaceholders.FOOTER: config.get(
-            ConfigKeys.FOOTER, config.get(ConfigKeys.LEGACY_KEYS["FOOTER"], "")
         ),
     }
 
@@ -247,6 +252,13 @@ def _get_placeholder_replacements() -> Dict[str, str]:
     doc_type_replacements = get_doc_type_replacements(doc_type_from_config)
     if doc_type_replacements:
         replacements.update(doc_type_replacements)
+
+    if stx_number:
+        if stx_number.upper().startswith(("STD", "STR")):
+            stx_suffix = stx_number[3:]
+        else:
+            stx_suffix = stx_number
+        replacements[WordPlaceholders.STX_NUMBER] = f"{replacements.get(WordPlaceholders.DOC_TYPE_STx, '')}{stx_suffix}"
 
     return replacements
 
@@ -510,7 +522,8 @@ def detect_unresolved_placeholders(doc: Document) -> Dict[str, List[str]]:
         WordPlaceholders.PLAN_NUMBER,
         WordPlaceholders.PREPARED_BY,
         WordPlaceholders.TEST_PROTOCOL,
-        WordPlaceholders.FOOTER,
+        WordPlaceholders.REPORT_NUMBER,
+        WordPlaceholders.STX_NUMBER,
     ]
 
     hits: Dict[str, List[str]] = {ph: [] for ph in placeholders}

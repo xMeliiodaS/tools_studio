@@ -32,22 +32,24 @@ class ConfigKeys:
     DOC_STX = "doc_stx"
     DOC_RECORD = "doc_record"
     DOC_STD = "doc_number"
+    REPORT_NUMBER = "report_number"
     STD_NAME = "std_name"
     TEST_PLAN = "test_plan"
+    STX_NUMBER = "stx_number"
     PREPARED_BY = "prepared_by"
     TEST_PROTOCOL = "test_plan"
-    FOOTER = "footer"
 
     LEGACY_KEYS = {
         "DOC_TYPE": "Doc_type",
         "DOC_TYPE_STX": "Doc_stx",
         "DOC_RECORD": "Doc_record",
         "DOC_STD": "DOC_STD",
+        "REPORT_NUMBER": "Report_number",
         "STD_NAME": "STD_name",
         "PLAN_NUMBER": "PLAN-number",
+        "STX_NUMBER": "Doc_stx_number",
         "PREPARED_BY": "Prepared_by",
         "TEST_PROTOCOL": "Test_protocol",
-        "FOOTER": "Footer",
     }
 
 # ============================================================================
@@ -61,12 +63,13 @@ class WordPlaceholders:
     DOC_TYPE_STx = "ADD_DOC_STX"        # STD or STR
     DOC_RECORD = "ADD_DOC_RECORD"       # Protocol or Report
 
-    DOC_STD = "ADD_DOC_STD#"            # DOC NUMBER (STD00X)   (Predefined by Cycle)
+    DOC_STD = "ADD_DOC_STD#"            # Protocol number
+    REPORT_NUMBER = "ADD_REPORT_NUMBER"  # Report number
     STD_NAME = "ADD_STD_NAME"           # STD Name
     PLAN_NUMBER = "ADD_PLAN_NUMBER"     # e.g. 0685             (Predefined by Cycle)
+    STX_NUMBER = "ADD_STX_NUMBER"      # STx number (e.g., STD005/STR014)
     PREPARED_BY = "ADD_PREPARED_BY"     # DOC Prepared By
-    TEST_PROTOCOL = "ADD_TEST_PROTOCOL" # If Applicable         (Predefined by Cycle)
-    FOOTER = "ADD_FOOTER"               # Footer                (Predefined by Cycle)
+    TEST_PROTOCOL = "ADD_TEST_PROTOCOL" # Test plan
 
 # ============================================================================
 # Word Table Handling Constants

@@ -35,10 +35,10 @@ namespace ste_tool_studio.Constants
         // Template Normalizer-specific Config Keys
         public const string ConfigKeyDoctype = "doc_type";
         public const string ConfigKeyDocNumber = "doc_number";
-        public const string ConfigKeyProjectNumber = "project_number";
+        public const string ConfigKeyReportNumber = "report_number";
         public const string ConfigKeyTestPlan = "test_plan";
+        public const string ConfigKeyStxNumber = "stx_number";
         public const string ConfigKeyPreparedBy = "prepared_by";
-        public const string ConfigKeyFooter = "footer";
 
         // Process Output Markers
         public const string ProgressTotalMarker = "PROGRESS_TOTAL:";
@@ -89,4 +89,3 @@ namespace ste_tool_studio.Constants
         public const string DeveloperCredit = "Developed by Bahaa";
     }
 }
-
