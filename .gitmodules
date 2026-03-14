@@ -1,0 +1,6 @@
+[submodule "std-template-normalizer"]
+	path = std-template-normalizer
+	url = https://github.com/xMeliiodaS/std-template-normalizer.git
+[submodule "ste_tools_studio"]
+	path = ste_tools_studio
+	url = https://github.com/xMeliiodaS/ste_tool_studio.git
